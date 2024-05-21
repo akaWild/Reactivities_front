@@ -56,6 +56,7 @@ function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit }: P
         />
         <Form.Input
           placeholder="Date"
+          type="date"
           value={activity.date}
           name="date"
           onChange={handleInputChange}
