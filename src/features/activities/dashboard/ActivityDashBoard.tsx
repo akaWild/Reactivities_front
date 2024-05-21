@@ -12,6 +12,7 @@ interface Props {
   editMode: boolean;
   openForm: (id: string) => void;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 }
 
 function ActivityDashBoard({
@@ -22,6 +23,7 @@ function ActivityDashBoard({
   editMode,
   openForm,
   closeForm,
+  createOrEdit,
 }: Props) {
   return (
     <Grid>
@@ -43,6 +45,7 @@ function ActivityDashBoard({
           <ActivityForm
             closeForm={closeForm}
             activity={selectedActivity}
+            createOrEdit={createOrEdit}
           />
         )}
       </GridColumn>
