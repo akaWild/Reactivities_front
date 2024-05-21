@@ -1,6 +1,12 @@
 import { Button, Form, Segment } from "semantic-ui-react";
+import { Activity } from "../../../app/models/activity";
 
-function ActivityForm() {
+interface Props {
+  activity: Activity | undefined;
+  closeForm: () => void;
+}
+
+function ActivityForm({ activity, closeForm }: Props) {
   return (
     <Segment clearing>
       <Form>
@@ -20,6 +26,7 @@ function ActivityForm() {
           floated="right"
           type="button"
           content="Cancel"
+          onClick={closeForm}
         />
       </Form>
     </Segment>

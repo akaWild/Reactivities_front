@@ -9,9 +9,20 @@ interface Props {
   selectedActivity: Activity | undefined;
   selectActivity: (id: string) => void;
   cancelSelectedActivity: () => void;
+  editMode: boolean;
+  openForm: (id: string) => void;
+  closeForm: () => void;
 }
 
-function ActivityDashBoard({ activities, selectedActivity, selectActivity, cancelSelectedActivity }: Props) {
+function ActivityDashBoard({
+  activities,
+  selectedActivity,
+  selectActivity,
+  cancelSelectedActivity,
+  editMode,
+  openForm,
+  closeForm,
+}: Props) {
   return (
     <Grid>
       <Grid.Column width="10">
@@ -21,13 +32,19 @@ function ActivityDashBoard({ activities, selectedActivity, selectActivity, cance
         />
       </Grid.Column>
       <GridColumn width="6">
-        {selectedActivity && (
+        {selectedActivity && !editMode && (
           <ActivityDetails
             activity={selectedActivity}
             cancelSelectedActivity={cancelSelectedActivity}
+            openForm={openForm}
           />
         )}
-        <ActivityForm />
+        {editMode && (
+          <ActivityForm
+            closeForm={closeForm}
+            activity={selectedActivity}
+          />
+        )}
       </GridColumn>
     </Grid>
   );
