@@ -18,7 +18,6 @@ function ActivityForm() {
         />
         <Button
           floated="right"
-          positive
           type="button"
           content="Cancel"
         />
