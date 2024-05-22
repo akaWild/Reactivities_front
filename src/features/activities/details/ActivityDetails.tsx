@@ -1,7 +1,7 @@
 import { Card, Image, CardContent, CardHeader, CardMeta, CardDescription, Button } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 
@@ -30,11 +30,15 @@ function ActivityDetails() {
       <CardContent extra>
         <Button.Group widths="2">
           <Button
+            as={Link}
+            to={`/manage/${activity.id}`}
             basic
             color="blue"
             content="Edit"
           />
           <Button
+            as={Link}
+            to="/activitites"
             basic
             color="grey"
             content="Cancel"
