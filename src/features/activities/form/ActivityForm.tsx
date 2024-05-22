@@ -36,6 +36,11 @@ function ActivityForm() {
     }
   }
 
+  function handleCancel() {
+    if (!activity.id) navigate("/activities");
+    else navigate(`/activities/${activity.id}`);
+  }
+
   function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
 
@@ -48,6 +53,7 @@ function ActivityForm() {
     <Segment clearing>
       <Form
         onSubmit={handleSubmit}
+        on
         autoComplete="off">
         <Form.Input
           placeholder="Title"
@@ -97,6 +103,7 @@ function ActivityForm() {
           floated="right"
           type="button"
           content="Cancel"
+          onClick={handleCancel}
         />
       </Form>
     </Segment>
