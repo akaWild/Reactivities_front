@@ -38,7 +38,7 @@ function ActivityDetails() {
           />
           <Button
             as={Link}
-            to="/activitites"
+            to="/activities"
             basic
             color="grey"
             content="Cancel"
