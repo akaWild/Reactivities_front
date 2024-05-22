@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 function ActivityDetails() {
   const { activityStore } = useStore();
 
-  const { selectedActivity: activity, openForm, cancelSelectedActivity } = activityStore;
+  const { selectedActivity: activity } = activityStore;
 
   if (!activity) return null;
 
@@ -25,13 +25,11 @@ function ActivityDetails() {
             basic
             color="blue"
             content="Edit"
-            onClick={() => openForm(activity.id)}
           />
           <Button
             basic
             color="grey"
             content="Cancel"
-            onClick={cancelSelectedActivity}
           />
         </Button.Group>
       </CardContent>
