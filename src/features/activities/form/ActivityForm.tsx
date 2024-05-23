@@ -1,12 +1,18 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Button, Segment } from "semantic-ui-react";
+import { Button, FormField, Label, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Activity } from "../../../app/models/activity";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { v4 as uuid } from "uuid";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import MyTextInput from "../../../app/common/form/MyTextInput";
+import MyTextArea from "../../../app/common/form/MyTextArea";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import { categoryOptions } from "../../../app/common/options/categoryOptions";
+import MyDateInput from "../../../app/common/form/MyDateInput";
 
 function ActivityForm() {
   const { activityStore } = useStore();
@@ -20,6 +26,15 @@ function ActivityForm() {
     date: "",
     city: "",
     venue: "",
+  });
+
+  const validationSchema = Yup.object({
+    title: Yup.string().required("The activity title is required"),
+    description: Yup.string().required("The activity description is required"),
+    category: Yup.string().required(),
+    date: Yup.string().required(),
+    city: Yup.string().required(),
+    venue: Yup.string().required(),
   });
 
   const { createActivity, updateActivity, loading, loadActivity, loadingInitial } = activityStore;
@@ -48,6 +63,7 @@ function ActivityForm() {
   return (
     <Segment clearing>
       <Formik
+        validationSchema={validationSchema}
         enableReinitialize
         initialValues={activity}
         onSubmit={(values) => console.log(values)}>
@@ -56,27 +72,32 @@ function ActivityForm() {
             className="ui form"
             onSubmit={handleSubmit}
             autoComplete="off">
-            <Field
-              placeholder="Title"
+            <MyTextInput
               name="title"
+              placeholder="Title"
             />
-            <Field
+            <MyTextArea
               placeholder="Description"
               name="description"
+              rows={3}
             />
-            <Field
+            <MySelectInput
+              options={categoryOptions}
               placeholder="Category"
               name="category"
             />
-            <Field
-              placeholder="Date"
-              type="date"
+            <MyDateInput
+              placeholderText="Date"
+              name="date"
+              showTimeSelect
+              timeCaption="time"
+              dateFormat="MMMM d, yyy h:mm aa"
             />
-            <Field
+            <MyTextInput
               placeholder="City"
               name="city"
             />
-            <Field
+            <MyTextInput
               placeholder="Venue"
               name="venue"
             />
