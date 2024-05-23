@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Button, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Activity } from "../../../app/models/activity";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { v4 as uuid } from "uuid";
-import { Formik } from "formik";
+import { Formik, Form, Field } from "formik";
 
 function ActivityForm() {
   const { activityStore } = useStore();
@@ -51,47 +51,34 @@ function ActivityForm() {
         enableReinitialize
         initialValues={activity}
         onSubmit={(values) => console.log(values)}>
-        {({ values: activity, handleChange, handleSubmit }) => (
+        {({ handleSubmit }) => (
           <Form
+            className="ui form"
             onSubmit={handleSubmit}
-            on
             autoComplete="off">
-            <Form.Input
+            <Field
               placeholder="Title"
-              value={activity.title}
               name="title"
-              onChange={handleChange}
             />
-            <Form.TextArea
+            <Field
               placeholder="Description"
-              value={activity.description}
               name="description"
-              onChange={handleChange}
             />
-            <Form.Input
+            <Field
               placeholder="Category"
-              value={activity.category}
               name="category"
-              onChange={handleChange}
             />
-            <Form.Input
+            <Field
               placeholder="Date"
               type="date"
-              value={activity.date}
-              name="date"
-              onChange={handleChange}
             />
-            <Form.Input
+            <Field
               placeholder="City"
-              value={activity.city}
               name="city"
-              onChange={handleChange}
             />
-            <Form.Input
+            <Field
               placeholder="Venue"
-              value={activity.venue}
               name="venue"
-              onChange={handleChange}
             />
             <Button
               loading={loading}
