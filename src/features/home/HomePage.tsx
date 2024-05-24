@@ -3,6 +3,7 @@ import { Button, Container, Header, Image, Segment } from "semantic-ui-react";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import LoginForm from "../users/LoginForm";
+import RegisterForm from "../users/RegisterForm";
 
 function HomePage() {
   const { userStore, modalStore } = useStore();
@@ -40,12 +41,20 @@ function HomePage() {
             </Button>
           </>
         ) : (
+          <>
             <Button
               onClick={() => modalStore.openModel(<LoginForm />)}
               size="huge"
               inverted>
               Login!
             </Button>
+            <Button
+              onClick={() => modalStore.openModel(<RegisterForm />)}
+              size="huge"
+              inverted>
+              Register!
+            </Button>
+          </>
         )}
       </Container>
     </Segment>
