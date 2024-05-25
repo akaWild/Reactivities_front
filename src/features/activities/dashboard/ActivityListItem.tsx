@@ -24,6 +24,7 @@ function ActivityListItem({ activity }: Props) {
         <Item.Group>
           <Item>
             <Item.Image
+              style={{ marginBottom: 5 }}
               size="tiny"
               circular
               src="/assets/user.png"
