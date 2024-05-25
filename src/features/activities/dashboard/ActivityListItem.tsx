@@ -1,4 +1,4 @@
-import { Button, Icon, Item } from "semantic-ui-react";
+import { Button, Icon, Item, Label } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { Link } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
@@ -26,7 +26,25 @@ function ActivityListItem({ activity }: Props) {
                 to={`/activities/${activity.id}`}>
                 {activity.title}
               </Item.Header>
-              <Item.Description>Hosted by Bob</Item.Description>
+              <Item.Description>Hosted by {activity.host?.displayName}</Item.Description>
+              {activity.ishost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color="orange">
+                    You are hosting this activity
+                  </Label>
+                </Item.Description>
+              )}
+              {activity.isGoing && !activity.ishost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color="green">
+                    You are going to this activity
+                  </Label>
+                </Item.Description>
+              )}
             </Item.Content>
           </Item>
         </Item.Group>
