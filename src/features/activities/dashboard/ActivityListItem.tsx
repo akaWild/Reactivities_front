@@ -35,7 +35,9 @@ function ActivityListItem({ activity }: Props) {
                 to={`/activities/${activity.id}`}>
                 {activity.title}
               </Item.Header>
-              <Item.Description>Hosted by {activity.host?.displayName}</Item.Description>
+              <Item.Description>
+                Hosted by <Link to={`/profiles/${activity.hostUsername}`}>{activity.host?.displayName}</Link>
+              </Item.Description>
               {activity.ishost && (
                 <Item.Description>
                   <Label
