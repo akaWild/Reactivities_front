@@ -3,6 +3,7 @@ import { Button, Card, Grid, GridColumn, Header, Image, TabPane } from "semantic
 import { Profile } from "../../app/models/profile";
 import { useStore } from "../../app/stores/store";
 import { useState } from "react";
+import PhotoUploadWidget from "../../app/common/imageUpload/PhotoUploadWidget";
 
 interface Props {
   profile: Profile;
@@ -34,7 +35,7 @@ function ProfilePhotos({ profile }: Props) {
         </Grid.Column>
         <GridColumn width={16}>
           {addPhotoMode ? (
-            <p>Photo widget goes here</p>
+            <PhotoUploadWidget />
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile.photos?.map((photo) => (
