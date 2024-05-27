@@ -13,11 +13,13 @@ function ActivityDetails() {
   const { activityStore } = useStore();
   const { id } = useParams();
 
-  const { selectedActivity: activity, loadActivity, loadingInitial } = activityStore;
+  const { selectedActivity: activity, loadActivity, loadingInitial, clearSelectedActivity } = activityStore;
 
   useEffect(() => {
     if (id) loadActivity(id);
-  }, [id, loadActivity]);
+
+    return () => clearSelectedActivity();
+  }, [id, loadActivity, clearSelectedActivity]);
 
   if (loadingInitial || !activity) return <LoadingComponent />;
 
